@@ -1,0 +1,11 @@
+bin/
+include/
+lib/
+CMakeCache.txt
+CMakeFiles/
+Makefile
+lib*.a
+lib*.so
+*.cmake
+*.sln
+*.vcxproj*
