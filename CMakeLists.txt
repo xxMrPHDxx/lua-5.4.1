@@ -38,16 +38,25 @@ set( SRCS
 )
 
 add_definitions( -DLUA_USE_POSIX )
+
 add_library( lua ${SRCS} )
 target_link_libraries( lua m )
+set_target_properties( lua PROPERTIES
+	ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/lib )
+
 add_executable( luae ${HDRS} src/lua.c )
 target_link_libraries( luae lua )
+set_target_properties( luae PROPERTIES
+	RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin )
+
 add_executable( luac ${HDRS} src/luac.c )
 target_link_libraries( luac lua )
+set_target_properties( luac PROPERTIES
+	RUNTIME_OUTPUT_DIRECTORY ${PROJECT_BINARY_DIR}/bin )
 
 file( COPY src/
-    DESTINATION include/
-    FILES_MATCHING
-        PATTERN .hpp
-        PATTERN .h
+	DESTINATION include/lua/
+	FILES_MATCHING
+  	PATTERN *.hpp
+		PATTERN *.h
 )
